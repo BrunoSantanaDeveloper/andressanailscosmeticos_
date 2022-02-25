@@ -52,7 +52,7 @@ return [
 
     'home-slider-button-title'=>"Shop Now",
 
-    'home-product-categories-title'=>"PRODUCT CATEGORIES",
+    'home-product-categories-title'=>"CATEGORIAS",
     'home-product-categories-description'=>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi venenatis felis tempus feugiat maximus.",
     'home-banner-title'=>"SNEAKER",
     'home-banner-sub-title'=>"Couples Footwear",
@@ -65,7 +65,7 @@ return [
     'home-news-description'=>"Lorem ipsum dolor sit amet, consectetur adipiscing elit.
     Morbi venenatis felis tempus feugiat maximus.",
 
-    'home-tab-title'=>"WELCOME TO STORE",
+    'home-tab-title'=>"PERFEITOS PARA PRESENTEAR",
     'home-tab-description'=>"Lorem ipsum dolor sit amet, consectetur adipiscing elit.
     Morbi venenatis felis tempus feugiat maximus.",
     'home-tab-topsales'=>"Top Sales",
