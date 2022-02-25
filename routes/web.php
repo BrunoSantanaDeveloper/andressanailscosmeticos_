@@ -85,9 +85,10 @@ Route::group(['middleware' => ['general','installer']], function () {
     Route::get('paytm-pay', 'Web\IndexController@paytmPayment');
     Route::get('order-web-view', 'Web\IndexController@orderWebView');
     Route::get('lang/{locale}', 'LocalizationController@index');
-    
+
 
 });
+
 
 Route::group(['middleware' => ['general','installer']], function () {
 
@@ -104,7 +105,8 @@ Route::group(['middleware' => ['general','installer']], function () {
     Route::get('/orders', 'Web\IndexController@orders');
     Route::get('/orders/{id}', 'Web\IndexController@ordersDetail');
     Route::get('/profile', 'Web\IndexController@profile');
-    Route::get('/thankyou', 'Web\IndexController@thankyou');
+    Route::get('/thankyou/{id}', 'Web\IndexController@thankyou')->name('thankyou');
+
     Route::get('/shipping-address', 'Web\IndexController@shippingAddress');
 
     Route::get('/wishlist', 'Web\IndexController@wishlist');
@@ -132,8 +134,8 @@ Route::group(['middleware' => ['general','installer']], function () {
     Route::get('update-settings-by-user', 'Web\IndexController@updateSettingsByUser');
     Route::get('reset-demo-settings', 'Web\IndexController@ResetDemoSettings');
 
-    
 
-    
+
+
 
 });

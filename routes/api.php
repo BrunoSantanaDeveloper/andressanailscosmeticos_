@@ -98,8 +98,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:user-api', 'scopes:use
     Route::post('product/sku', 'API\Admin\ProductController@sku');
 
     Route::resource('sale', 'API\Admin\SaleController', ['names' => ['index' => 'admin.sale.index', 'store' => 'admin.sale.store', 'destroy' => 'admin.sale.delete']])->middleware('store');
-    Route::resource('sale_quotation', 'API\Admin\SaleQuotationController', ['names' => ['index' => 'admin.sale.index', 'store' => 'admin.sale.store', 'destroy' => 'admin.sale.delete']])->middleware('store');
-
     Route::resource('sale_return', 'API\Admin\SaleReturnController', ['names' => ['index' => 'admin.sale_return.index', 'store' => 'admin.sale_return.store', 'destroy' => 'admin.sale_return.delete']])->middleware('store');
     Route::resource('blog_category', 'API\Admin\BlogCategoryController', ['names' => ['index' => 'admin.blog_category.index', 'store' => 'admin.blog_category.store', 'update' => 'admin.blog_category.update', 'destroy' => 'admin.blog_category.delete']])->except(['edit', 'create']);
     Route::resource('timezone', 'API\Admin\TimezoneController', ['names' => ['index' => 'admin.timezone.index', 'show' => 'admin.timezone.show', 'store' => 'admin.timezone.store', 'update' => 'admin.timezone.update', 'destroy' => 'admin.timezone.delete']])->except(['edit', 'create']);
@@ -111,7 +109,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:user-api', 'scopes:use
     Route::resource('bar_code_setting', 'API\Admin\BarCodeSettingController', ['names' => ['index' => 'admin.bar_code_setting.index', 'store' => 'admin.bar_code_setting.store', 'update' => 'admin.bar_code_setting.update', 'destroy' => 'admin.bar_code_setting.delete']])->except(['edit', 'create']);
     Route::resource('tag', 'API\Admin\TagController')->only(['index']);
     Route::resource('membership', 'API\Admin\MembershipController', ['names' => ['index' => 'admin.membership.index', 'store' => 'admin.membership.store']])->only(['index', 'store']);
-    Route::resource('review', 'API\Web\ReviewController', ['names' => ['index' => 'admin.review.index', 'update' => 'admin.review.update']])->except(['edit', 'create', 'store', 'destroy']);
+    Route::resource('review', 'API\Web\ReviewController' , ['names' => ['index' => 'admin.review.index', 'update' => 'admin.review.update']])->except(['edit', 'create','store','destroy']);
     Route::put('review', 'API\Web\ReviewController@index');
     Route::post('review/status', 'API\Web\ReviewController@status')->name('admin.review.status');
     Route::post('comment/reply', 'API\Web\CommentController@reply');
@@ -126,24 +124,19 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:user-api', 'scopes:use
 
     Route::get('user/{id}', 'API\Admin\AuthController@show')->name('admin.auth.show');
     Route::put('user/{id}', 'API\Admin\AuthController@update')->name('admin.auth.update');
-    Route::get('/dashboard', 'Web\IndexController@orderStats');
-    Route::resource('cart', 'API\Web\CartController', ['names' => ['store' => 'client.cart.store']])->except(['edit', 'create', 'update', 'index', 'destroy']);
+    Route::get('/dashboard','Web\IndexController@orderStats');
+    Route::resource('cart', 'API\Web\CartController', ['names' => ['store' => 'client.cart.store']])->except(['edit', 'create', 'update','index','destroy']);
     Route::post('order', 'API\Web\OrderController@store');
     Route::resource('customer_address_book', 'API\Web\CustomerAddressBookController', ['names' => ['index' => 'admin.customer_address_book.index', 'store' => 'admin.customer_address_book.store', 'update' => 'admin.customer_address_book.update', 'destroy' => 'admin.customer_address_book.delete']])->except(['edit', 'create']);
-    Route::group(['prefix' => 'reports'], function () {
-        Route::get('stock-on-hand', 'API\Admin\ReportController@stockOnHand');
-        Route::get('out-of-stock', 'API\Admin\ReportController@outOfStock');
-        Route::get('purchase-report', 'API\Admin\ReportController@purchaseReport');
-        Route::get('expense-report', 'API\Admin\ReportController@expenseReport');
 
 
-
-    });
 });
 
 // Route::get('paywithpaypal', array('as' => 'paywithpaypal','uses' => 'API\Web\PaypalController@payWithPaypal',));
 // Route::post('paypal', array('as' => 'paypal','uses' => 'API\Web\PaypalController@postPaymentWithpaypal',));
 // Route::get('paypal', array('as' => 'status','uses' => 'API\Web\PaypalController@getPaymentStatus',));
+
+
 
 Route::group(['prefix' => 'client'], function () {
     Route::post('/customer_login', 'API\Web\CustomerAuthController@login');
@@ -154,6 +147,10 @@ Route::group(['prefix' => 'client'], function () {
     Route::post('/reset_password', 'API\Web\CustomerAuthController@resetPassword');
 
     Route::put('order_status_by_delivery_boy/{order}', 'API\Web\OrderController@update');
+
+    Route::post('/payment_credit_card', 'API\Web\MercadopagoController@paymentWithMercadopago')->name('payment_credit_card');
+
+
 });
 
 Route::group(['prefix' => 'client', 'middleware' => ['auth:customer-api', 'scopes:customer']], function () {
@@ -183,6 +180,10 @@ Route::group(['prefix' => 'client', 'middleware' => ['auth:customer-api', 'scope
     Route::post('add_comments', 'API\Web\OrderController@addOrderComments');
     Route::get('available_qty', 'API\Admin\AvailableQtyController@index');
     Route::post('/change_password', 'API\Web\CustomerAuthController@changePassword');
+
+
+
+
 });
 
 Route::group(['prefix' => 'client', 'middleware' => ['checkClientCredentials']], function () {
@@ -215,13 +216,12 @@ Route::group(['prefix' => 'client', 'middleware' => ['checkClientCredentials']],
     Route::resource('attributes', 'API\Admin\AttributeController')->only(['index', 'show']);
     Route::resource('variations', 'API\Admin\VariationController')->only(['index', 'show']);
     Route::post('contact-us', 'API\Web\MailController@contact_us');
-    Route::resource('constant_banner', 'API\Admin\ConstantBannerController', ['names' => ['index' => 'admin.banner.index']])->except(['update', 'destroy', 'store', 'edit', 'create']);
+    Route::resource('constant_banner', 'API\Admin\ConstantBannerController', ['names' => ['index' => 'admin.banner.index']])->except(['update','destroy','store','edit', 'create']);
     Route::resource('order', 'API\Admin\OrderController', ['names' => ['index' => 'admin.order.index']])->only(['index', 'show']);
     Route::post('/delivery_validate_pin', 'API\Admin\DeliveryBoyController@validatePin')->name('delivery_boy.validate_pin');
     Route::put('/update_delivery_boy_status', 'API\Admin\DeliveryBoyController@UpdateStatus')->name('delivery_boy.validate_pin');
+
 });
-
-
 
 Route::get('clear', function () {
     \Artisan::call('cache:clear');

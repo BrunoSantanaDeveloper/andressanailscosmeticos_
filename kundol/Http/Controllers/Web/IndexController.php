@@ -24,6 +24,7 @@ use App\Services\Admin\OrderService;
 use Illuminate\Support\Facades\Log;
 use Mollie\Laravel\Facades\Mollie;
 use Illuminate\Support\Facades\Http;
+use App\Repository\Admin\OrderRepository;
 
 class IndexController extends Controller
 {
@@ -142,6 +143,7 @@ class IndexController extends Controller
 
     public function checkout()
     {
+
         $homeService = new HomeService;
         $data = $homeService->homeIndex();
         $setting = getSetting();
@@ -174,12 +176,17 @@ class IndexController extends Controller
         return view('profile', compact('data', 'setting'));
     }
 
-    public function thankyou()
+    public function thankyou($id)
     {
         $homeService = new HomeService;
         $data = $homeService->homeIndex();
         $setting = getSetting();
-        return view('thankyou', compact('data', 'setting'));
+
+
+        $order = Order::where('id', $id)->with('detail.product.detail', 'customer', 'billing_state1')->first();
+
+
+        return view('thankyou', compact('data', 'setting', 'id', 'order' ));
     }
 
 
@@ -205,7 +212,7 @@ class IndexController extends Controller
         return view('reset-password', compact('data', 'setting'));
     }
 
-    
+
 
     public function shippingAddress()
     {
@@ -342,13 +349,13 @@ class IndexController extends Controller
         // ]);
         $parms = $request->all();
         $payment_method_setting = PaymentMethodSetting::where('payment_method_id', '11')->get();
-        
+
         $parms['charges'] = 100;
 
         $payment = \PaytmWallet::with('receive');
 
         $payment->prepare([
-            'order' => $parms['order_id'], 
+            'order' => $parms['order_id'],
             'user' =>'1',
             'mobile_number' => $parms['mobile'],
             'email' => $parms['email'], // your user email address
@@ -364,11 +371,11 @@ class IndexController extends Controller
         $transaction = \PaytmWallet::with('receive');
 
         $response = $transaction->response();
-        
+
         $order_id = $transaction->getOrderId(); // return a order id
-      
+
         $transaction->getTransactionId(); // return a transaction id
-    
+
         // update the db data as per result from api call
         if ($transaction->isSuccessful()) {
             // Paytm::where('order_id', $order_id)->update(['status' => 1, 'transaction_id' => $transaction->getTransactionId()]);
@@ -377,13 +384,13 @@ class IndexController extends Controller
         } else if ($transaction->isFailed()) {
             // Paytm::where('order_id', $order_id)->update(['status' => 0, 'transaction_id' => $transaction->getTransactionId()]);
             return "Your payment is failed.";
-            
+
         } else if ($transaction->isOpen()) {
             // Paytm::where('order_id', $order_id)->update(['status' => 2, 'transaction_id' => $transaction->getTransactionId()]);
             return "Your payment is processing.";
         }
         $transaction->getResponseMessage(); //Get Response Message If Available
-        
+
         $transaction->getOrderId(); // Get order id
         Order::where('id',$transaction->getOrderId())->update([
             'payment_status' => 'success'
@@ -402,7 +409,7 @@ class IndexController extends Controller
 
 
     public function molliePayment($order_id){
-        
+
         $order = Order::where('id',$order_id)->first();
 
         $payment = Mollie::api()->payments->create([
@@ -449,7 +456,7 @@ class IndexController extends Controller
 
 
         }
-        
+
         Log::info('Payment received from Paystack.'.(string)$response['data']['status']);
         return redirect('thankyou');
     }
@@ -491,5 +498,5 @@ class IndexController extends Controller
         return redirect()->back();
     }
 
-    
+
 }
