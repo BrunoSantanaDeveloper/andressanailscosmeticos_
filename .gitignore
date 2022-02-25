@@ -1,11 +1,4 @@
-/bootstrap/cache
-/node_modules
-/public/hot
-/public/storage
-/public/gallary
-/public/delivery
-/storage/*.key
-/storage/installed
+
 .env
 .env.backup
 .phpunit.result.cache
