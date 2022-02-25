@@ -24,9 +24,9 @@ $orange: #f05a22;
 $voiltsky: #4fbbd0;
 $yellow: #EDD562;
 
- 
+
 .demo-panel {
-    position: fixed;
+    positio n: fixed;
     left: 0;
     top: 30px;
     z-index: 9999;
@@ -144,56 +144,56 @@ $yellow: #EDD562;
     div {
       display: inline-block;
     }
-  
+
     input[type="radio"] {
       display: none;
-  
+
       + label {
         color: #333;
         font-family: Arial, sans-serif;
-        font-size: 14px;
+        font-size: 1  4px;
         margin-bottom: 0;
-  
+
         span {
-          display: inline-block;
+            display: inline-block;
           width: 18px;
           height: 18px;
           margin: 0px 2px 2px 0;
-          vertical-align: middle;
+          vertical-align:   middle;
           cursor: pointer;
           background-repeat: no-repeat;
           background-position: center;
           text-align: center;
-      
+
           img {
             opacity: 0;
             transition: all .3s ease;
             width: 12px;
-            margin-top: -5px; 
+            margin-top: -5px;
           }
         }
       }
-  
-      &#style + label span {
+
+            &#style + label span {
         background-color: $style;
       }
-  
+
       &#brown + label span {
         background-color: $brown;
-      }
-  
-      &#brickred + label span {
+       }
+
+      &#brickred + label span   {
         background-color: $brickred;
       }
-  
+
       &#green + label span {
         background-color: $green;
       }
       &#purple + label span {
-        background-color: $purple;
+          background-color: $purple;
       }
       &#darkbrown + label span {
-        background-color: $darkbrown;
+        b  ackground-color: $darkbrown;
       }
       &#bilobaflower + label span {
         background-color: $bilobaflower;
@@ -249,10 +249,10 @@ $yellow: #EDD562;
       &#yellow + label span {
         background-color: $yellow;
       }
-  
+
       &:checked + label span img {
         opacity: 1;
-      } 
+      }
     }
 }
   .quick-view-hover {
@@ -265,7 +265,7 @@ $yellow: #EDD562;
     transform: translateY(-50%);
     img {
         width: 425px;
-        border: 2px solid var(--color-border);
+        border: 2px solid var(--color-borde r);
     }
 }
 .quick-view:hover + .quick-view-hover {

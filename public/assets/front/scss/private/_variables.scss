@@ -32,21 +32,21 @@ $cyan:    #17a2b8 !default;
 
 
 $primary:       #fff !default;  // Main color or Primary color of the website
-$secondary:   #1e30ca !default;  // Main color for buttons
-   
+$secondary:   #ccaa66 !default;  // Main color for buttons
+
 $primary-dark: $secondary;
 $primary-light: #022e46;
 
 $secondary-dark:  $secondary;
-$secondary-hover: #080808; //icon-hover 
+$secondary-hover: #080808; //icon-hover
 $success:       $green !default;
 $info:          $blue !default;
 $warning:       $yellow !default;
 $danger:        $red !default;
 $light:         $gray-200 !default;  // For only use background color of the website
 $dark:          $gray-800 !default;
- 
-   
+
+
 // Set a specific jump point for requesting color jumps
 $theme-color-interval:      8% !default;
 
@@ -91,9 +91,9 @@ $bg-footer: #fff;
 $bg-social: $primary;
 
 @font-face { font-family: 'Montserrat-Regular';
-   
+
     src: url('../../webfonts/Montserrat-Regular.eot?#iefix&v=4.7.0') format('embedded-opentype'),
-     url('../../webfonts/Montserrat-Regular.woff?v=4.7.0') format('woff'), 
+     url('../../webfonts/Montserrat-Regular.woff?v=4.7.0') format('woff'),
      url('../../webfonts/Montserrat-Regular.ttf?v=4.7.0') format('truetype'),
       url('../../webfonts/Montserrat-Regular.svg?v=4.7.0#Montserrat-Regular') format('svg');
      font-weight: normal; font-style: normal;
@@ -103,7 +103,7 @@ $bg-social: $primary;
 
         src: url('../../webfonts/Montserrat-Bold.eot?#iefix&v=4.7.0') format('embedded-opentype'),
 
-         url('../../webfonts/Montserrat-Bold.woff?v=4.7.0') format('woff'), 
+         url('../../webfonts/Montserrat-Bold.woff?v=4.7.0') format('woff'),
          url('../../webfonts/Montserrat-Bold.ttf?v=4.7.0') format('truetype'),
           url('../../webfonts/Montserrat-Bold.svg?v=4.7.0#/Montserrat-Bold') format('svg');
          font-weight: normal; font-style: normal;
