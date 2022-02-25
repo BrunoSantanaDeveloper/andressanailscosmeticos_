@@ -243,6 +243,7 @@ return array(
     'App\\Http\\Controllers\\API\\Web\\CustomerController' => $baseDir . '/kundol/Http/Controllers/API/Web/CustomerController.php',
     'App\\Http\\Controllers\\API\\Web\\MailController' => $baseDir . '/kundol/Http/Controllers/API/Web/MailController.php',
     'App\\Http\\Controllers\\API\\Web\\MembershipLevelController' => $baseDir . '/kundol/Http/Controllers/API/Web/MembershipLevelController.php',
+    'App\\Http\\Controllers\\API\\Web\\MercadopagoController' => $baseDir . '/kundol/Http/Controllers/API/Web/MercadopagoController.php',
     'App\\Http\\Controllers\\API\\Web\\OrderController' => $baseDir . '/kundol/Http/Controllers/API/Web/OrderController.php',
     'App\\Http\\Controllers\\API\\Web\\PaypalController' => $baseDir . '/kundol/Http/Controllers/API/Web/PaypalController.php',
     'App\\Http\\Controllers\\API\\Web\\PointController' => $baseDir . '/kundol/Http/Controllers/API/Web/PointController.php',

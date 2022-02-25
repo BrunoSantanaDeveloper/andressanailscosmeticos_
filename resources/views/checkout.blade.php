@@ -511,6 +511,118 @@
                                                 </div>
                                             </div>
                                         </div>
+
+
+
+                                        <div class="col-md-12 mercado_pago_card  d-none">
+
+                                            @php
+                                                $public_key = "";
+                                                if (isset($payment_methods['id'])) {
+                                                    // get the payment  settings from db
+                                                    $payment_settings =  \App\Models\Admin\PaymentMethodSetting::where( ['payment_method_id' => $payment_methods->id, 'key' => "PUBLIC_KEY"] )->first();
+                                                    $public_key = $payment_settings->value;
+                                                }
+
+                                                // get current user
+                                                $user = Auth::user();
+
+                                            @endphp
+
+                                                <!-- Hidden input to store your integration public key -->
+                                                <input type="hidden" id="mercado-pago-public-key" value="{{ $public_key}}">
+                                                <script src="//sdk.mercadopago.com/js/v2"></script>
+
+                                                <script src="{{ asset('assets/front/js/mercado_pago.js') }}"></script>
+
+                                                <!-- Payment -->
+                                                <section class="payment-form dark">
+                                                    <div class="container__payment">
+
+                                                        <div class="form-payment">
+
+                                                            <div class="payment-details">
+                                                                <form id="form-checkout"  >
+
+
+                                                                    <input id="form-checkout__cardholderEmail" name="cardholderEmail"  type="hidden" class="form-control"/>
+                                                                    <input id="form-checkout__identificationType" name="identificationType" type="hidden" class="form-control"/>
+                                                                    <input id="form-checkout__identificationNumber" name="docNumber" type="hidden" class="form-control"/>
+
+
+                                                                    <div class="row">
+                                                                        <div class="col-sm-8">
+                                                                            <div class="fail-response" id="fail-response" style="display: none;"></div>
+                                                                        </div>
+                                                                        <div class="form-group col-sm-8">
+                                                                            <h3 class="title">Cartão de Crédito</h3>
+                                                                        </div>
+                                                                        <div class="form-group col-sm-8">
+                                                                            <label for="cardholderName">Nome de titular do cartão</label>
+                                                                            <input id="form-checkout__cardholderName" name="cardholderName" type="text" class="form-control"/>
+                                                                        </div>
+                                                                        <div class="form-group col-sm-4">
+                                                                            <div class="input-group expiration-date">
+                                                                                <label for="" style="width: 100%">Vencimento do cartão</label>
+                                                                                <input id="form-checkout__cardExpirationMonth" name="cardExpirationMonth" type="text" class="form-control" maxlength="2" style="height: 35px;" />
+                                                                                <span class="date-separator" style="font-size:26px; padding: 0px 4px;">/</span>
+                                                                                <input id="form-checkout__cardExpirationYear" name="cardExpirationYear" type="text" class="form-control" maxlength="2" style="height: 35px;"/>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group col-sm-8">
+                                                                            <label for="form-checkout__cardNumber">Número do cartão</label>
+                                                                            <input id="form-checkout__cardNumber" name="cardNumber" type="text" class="form-control"/>
+                                                                        </div>
+                                                                        <div class="form-group col-sm-4">
+                                                                            <label for="form-checkout__cardNumber">CVV</label>
+                                                                            <input id="form-checkout__securityCode" name="securityCode" type="text" class="form-control"/>
+                                                                        </div>
+                                                                        <div id="issuerInput" class="form-group col-sm-12 hidden">
+                                                                            <!-- Bandeira do cartão -->
+                                                                            <select id="form-checkout__issuer" name="issuer" class="form-control" style="display: none"></select>
+                                                                        </div>
+                                                                        <div class="form-group col-sm-12">
+                                                                            <label for="form-checkout__installments">Parcelas <span style="font-size:10px">(Digite os dados do cartão para visualizar o número de parcelas.)</span> </label>
+                                                                            <select id="form-checkout__installments" name="installments" type="text" class="form-control"></select>
+                                                                        </div>
+                                                                        <div class="form-group col-sm-12">
+                                                                            <input type="hidden" id="amount" value="" />
+                                                                            <input type="hidden" id="description" value="Produtos" />
+                                                                            <input type="hidden" id="product-description" value="Produtos" />
+                                                                            <br>
+                                                                            <button id="form-checkout__submit" type="submit" class="btn btn-secondary btn-block">Finalizar Compra</button>
+                                                                            <br>
+
+                                                                        </div>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </section>
+
+
+
+                                        </div>
+
+                                        <div class="col-md-12 mercado_pago_pix  d-none">
+
+                                            @php
+                                                $public_key = "";
+                                                if (isset($payment_methods['id'])) {
+                                                    // get the payment  settings from db
+                                                    $payment_settings =  \App\Models\Admin\PaymentMethodSetting::where( ['payment_method_id' => $payment_methods->id, 'key' => "PUBLIC_KEY"] )->first();
+                                                    $public_key = $payment_settings->value;
+                                                }
+
+                                            @endphp
+
+
+                                        </div>
+
+
+
+
                                         <div class="col-12 col-sm-12">
                                             <div class="row">
                                                 <a data-toggle="pill" href="#pills-method"
@@ -894,6 +1006,7 @@
             $(".caritem-discount-coupon").attr('price', 0);
             $(".caritem-discount-coupon").html(0);
             $(".caritem-grandtotal").html(price);
+            $("#amount").val(price);
             tax();
             toastr.error('{{ trans('response.coupon_removed') }}');
         });
@@ -926,11 +1039,15 @@
                                         .amount);
                                     $(".caritem-grandtotal").html(data.data.currency.code + ' ' + price1
                                         .toFixed(2));
+
+                                        $("#amount").val(price1.toFixed(2));
                                 } else {
                                     $(".caritem-discount-coupon").html(data.data.amount + ' ' + data.data
                                         .currency.code);
                                     $(".caritem-grandtotal").html(price1.toFixed(2) + ' ' + data.data.currency
                                         .code);
+
+                                        $("#amount").val(price1.toFixed(2));
                                 }
                             }
                         } else {
@@ -945,12 +1062,17 @@
                                     price = price - price1
                                     $(".caritem-grandtotal").html(data.data.currency.code + ' ' + price.toFixed(
                                         2));
+
+                                    $("#amount").val(price.toFixed(2));
+
                                 } else {
                                     $(".caritem-discount-coupon").html(price1.toFixed(2) + ' ' + data.data
                                         .currency.code);
                                     price = price - price1
                                     $(".caritem-grandtotal").html(price.toFixed(2) + ' ' + data.data.currency
                                         .code);
+
+                                    $("#amount").val(price.toFixed(2));
                                 }
                             }
                         }
@@ -960,6 +1082,7 @@
                         $(".caritem-discount-coupon").attr('price', 0);
                         $(".caritem-discount-coupon").html('');
                         $(".caritem-grandtotal").html(price);
+                        $("#amount").val(price);
                         localStorage.setItem("couponCart", '');
                         toastr.error('{{ trans('invalid-coupon') }}');
                     }
@@ -970,6 +1093,7 @@
                     $(".caritem-discount-coupon").attr('price', 0);
                     $(".caritem-discount-coupon").html('');
                     $(".caritem-grandtotal").html(price);
+                    $("#amount").val(price);
                     localStorage.setItem("couponCart", '');
                     if (data.status == 422) {
                         // toastr.error(data.responseJSON.message);
@@ -1365,6 +1489,25 @@
                 $(".createOrder").removeClass('d-none');
             }
 
+            if (payment_method == 'mercado_pago_card') {
+
+                $(".mercado_pago_card").removeClass('d-none');
+                $(".mercado_pago_pix").addClass('d-none');
+                $(".createOrder").addClass('d-none');
+
+                loadCardForm();
+            }
+            if (payment_method == 'mercado_pago_pix') {
+
+                $(".mercado_pago_pix").removeClass('d-none');
+                $(".mercado_pago_card").addClass('d-none');
+                $(".createOrder").addClass('d-none');
+
+
+            }
+
+
+
         });
         $(".createOrder").click(function(e) {
             e.preventDefault();
@@ -1396,19 +1539,18 @@
             cc_expiry_year = $("#cc_expiry_year").val();
             cc_cvc = $("#cc_cvc").val();
             payment_method_nonce = $('#payment-method-nonce').val();
-            var orderAmount = $(".caritem-grandtotal").html();
-            orderAmount = orderAmount.split(" ");
+
             if (payment_method == 'razorpay') {
                 var amount = $('.caritem-grandtotal').html();
                 var KeyId = "{{ isset(PaymentMethods('kEY_ID')->value) ? PaymentMethods('kEY_ID')->value : "" }}";
-                var total_amount = parseFloat(orderAmount[1]) * 100;
+                var total_amount = 10 * 100;
                 var options = {
                     "key": KeyId, // Enter the Key ID generated from the Dashboard
                     "amount": total_amount, // Amount is in currency subunits. Default currency is INR. Hence, 10 refers to 1000 paise
                     "currency": "USD",
-                    "name": "{{ isset(getSetting()['site_name']) ? getSetting()['site_name'] : '' }}",
-                    "description": "Order Transaction",
-                    "image": "{{isset(getSetting()['site_logo']) ? getSetting()['site_logo'] : asset('01-logo.png') }}",
+                    "name": "NiceSnippets",
+                    "description": "Test Transaction",
+                    "image": "https://www.nicesnippets.com/image/imgpsh_fullsize.png",
                     "order_id": "", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
                     "handler": function(response) {
 
@@ -1492,15 +1634,15 @@
                         });
                     },
                     "prefill": {
-                        "name": billing_first_name,
-                        "email":localStorage.getItem("customerEmail"),
-                        "contact": billing_phone
+                        "name": "Mehul Bagda",
+                        "email": "mehul.bagda@example.com",
+                        "contact": "818********6"
                     },
                     "notes": {
-                        "address": billing_street_aadress
+                        "address": "test test"
                     },
                     "theme": {
-                        "color": "isset(getSetting()['razorpay_theme_color']) ? getSetting()['razorpay_theme_color'] : '#F37254'"
+                        "color": "#F37254"
                     }
                 };
                 var rzp1 = new Razorpay(options);
@@ -1669,9 +1811,13 @@
                         if ($.trim($(".caritem-subtotal").attr('currency-position')) == 'left') {
                             $(".caritem-grandtotal").html($(".caritem-subtotal").attr('currency-code') + ' ' +
                                 total.toFixed(2));
+                            $("#amount").val(total.toFixed(2));
+
                         } else {
                             $(".caritem-grandtotal").html(total.toFixed(2) + ' ' + $(".caritem-subtotal").attr(
                                 'currency-code'));
+
+                            $("#amount").val(total.toFixed(2));
                         }
                         // toastr.error(data.message);
                     }
@@ -1739,6 +1885,7 @@
             });
         }
 
+
         function caritemGrandtotal() {
             couponCart = $(".caritem-discount-coupon").attr('price');
             if (couponCart == null || couponCart == '') {
@@ -1764,14 +1911,16 @@
             }
             if ($.trim($(".caritem-subtotal").attr('currency-position')) == 'left') {
                 $(".caritem-grandtotal").html($(".caritem-subtotal").attr('currency-code') + ' ' + total.toFixed(2));
+                $("#amount").val(total.toFixed(2));
             } else {
                 $(".caritem-grandtotal").html(total.toFixed(2) + ' ' + $(".caritem-subtotal").attr('currency-code'));
+                $("#amount").val(total.toFixed(2));
             }
         }
     </script>
 
-    <script src="https://js.braintreegateway.com/web/3.83.0/js/hosted-fields.min.js"></script>
-    <script src="https://js.braintreegateway.com/web/3.83.0/js/client.min.js"></script>
+    {{-- <script src="https://js.braintreegateway.com/web/3.83.0/js/hosted-fields.min.js"></script>
+    <script src="https://js.braintreegateway.com/web/3.83.0/js/client.min.js"></script> --}}
 
     <script
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCkfQ--NrbuRkdYSFBu1AXlWohPV7RhNyI&libraries=places&callback=initialize"
@@ -1945,9 +2094,10 @@
             });
         }
 
-
+/*
         var url = "{{ url('') }}" + '/api/client/get-braintree-auth-token';
         var braintree_token = null;
+
 
         var form = $('#braintree-form');
         $.ajax({
@@ -2153,6 +2303,7 @@
 
             }
         });
+        */
         // alert(braintree_token);
 
 
@@ -2315,5 +2466,236 @@
 
         })
     </script>
+    <script>
+        customerFname = $.trim(localStorage.getItem("customerFname"));
+        customerLname = $.trim(localStorage.getItem("customerLname"));
+        customerEmail1 = $.trim(localStorage.getItem("customerEmail"));
 
+        //$("#form-checkout__cardholderName").val(customerFname + " " + customerLname);
+        $("#form-checkout__cardholderEmail").val(customerEmail1);
+        $("#form-checkout__identificationType").val('CPF');
+        $("#form-checkout__identificationNumber").val('65656433501');
+
+
+
+
+
+        const publicKey = document.getElementById("mercado-pago-public-key").value;
+        const mercadopago = new MercadoPago(publicKey);
+
+        function loadCardForm() {
+
+            const productCost = document.getElementById('amount').value;
+            const productDescription = document.getElementById('product-description').innerText;
+
+            const cardForm = mercadopago.cardForm({
+                amount: productCost,
+                autoMount: true,
+                form: {
+                    id: "form-checkout",
+                    cardholderName: {
+                        id: "form-checkout__cardholderName",
+                        placeholder: "",
+                    },
+                    cardholderEmail: {
+                        id: "form-checkout__cardholderEmail",
+                        placeholder: "",
+                    },
+                    cardNumber: {
+                        id: "form-checkout__cardNumber",
+                        placeholder: "",
+                    },
+                    cardExpirationMonth: {
+                        id: "form-checkout__cardExpirationMonth",
+                        placeholder: "MM",
+                    },
+                    cardExpirationYear: {
+                        id: "form-checkout__cardExpirationYear",
+                        placeholder: "YY",
+                    },
+                    securityCode: {
+                        id: "form-checkout__securityCode",
+                        placeholder: "",
+                    },
+                    installments: {
+                        id: "form-checkout__installments",
+                        placeholder: "Parcelas",
+                    },
+                    identificationType: {
+                        id: "form-checkout__identificationType",
+                    },
+                    identificationNumber: {
+                        id: "form-checkout__identificationNumber",
+                        placeholder: "Identification number",
+                    },
+                    issuer: {
+                        id: "form-checkout__issuer",
+                        placeholder: "Issuer",
+                    },
+                },
+                callbacks: {
+                    onFormMounted: error => {
+                        if (error)
+                            return console.warn("Form Mounted handling error: ", error);
+                        console.log("Form mounted");
+                    },
+
+                    onSubmit: event => {
+                        event.preventDefault();
+                        document.getElementById("form-checkout__submit").disabled = true;
+                        document.getElementById("form-checkout__submit").value = "Processando...";
+
+                      //  var amount = $('.caritem-grandtotal').html();
+                        var KeyId = "{{ isset(PaymentMethods('kEY_ID')->value) ? PaymentMethods('kEY_ID')->value : "" }}";
+                        billing_first_name = $("#billing_first_name").val();
+                        billing_last_name = $("#billing_last_name").val();
+                        billing_street_aadress = $("#billing_street_aadress").val();
+                        billing_country = $("#billing_country").val();
+                        billing_state = $("#billing_state").val();
+                        billing_city = $("#billing_city").val();
+                        billing_postcode = $("#billing_postcode").val();
+                        billing_phone = $("#billing_phone").val();
+
+                        delivery_first_name = $("#delivery_first_name").val();
+                        delivery_last_name = $("#delivery_last_name").val();
+                        delivery_street_aadress = $("#delivery_street_aadress").val();
+                        delivery_country = $("#delivery_country").val();
+                        delivery_state = $("#delivery_state").val();
+                        delivery_city = $("#delivery_city").val();
+                        delivery_postcode = $("#delivery_postcode").val();
+                        delivery_phone = $("#delivery_phone").val();
+                        order_notes = $("#order_notes").val();
+                        coupon_code = $.trim(localStorage.getItem("couponCart"));
+                        payment_method = $(".payment_method:checked").val();
+                        payment_method_nonce = $('#payment-method-nonce').val();
+
+                        customer_id =localStorage.getItem("customerId");
+
+                        const back_end_token = localStorage.getItem("customerToken");
+
+                        const {
+                            paymentMethodId,
+                            issuerId,
+                            cardholderEmail: email,
+                            amount,
+                            token,
+                            installments,
+                            identificationNumber,
+                            identificationType,
+                        } = cardForm.getCardFormData();
+
+                        fetch('{{ route('payment_credit_card') }}', {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                                "Authorization": "Bearer " + back_end_token,
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                                clientid: "{{ isset(getSetting()['client_id']) ? getSetting()['client_id'] : '' }}",
+                                clientsecret: "{{ isset(getSetting()['client_secret']) ? getSetting()['client_secret'] : '' }}",
+
+
+                            },
+                            body: JSON.stringify({
+                                token,
+                                issuerId,
+                                paymentMethodId,
+                                transactionAmount: Number(amount),
+                                installments: Number(installments),
+                                description: productDescription,
+                                payer: {
+                                    email,
+                                    identification: {
+                                        type: identificationType,
+                                        number: identificationNumber,
+                                    },
+                                },
+
+
+                                billing_first_name: billing_first_name,
+                                billing_last_name: billing_last_name,
+                                billing_street_aadress: billing_street_aadress,
+                                billing_country: billing_country,
+                                billing_state: billing_state,
+                                billing_city: billing_city,
+                                billing_postcode: billing_postcode,
+                                billing_phone: billing_phone,
+                                delivery_first_name: delivery_first_name,
+                                delivery_last_name: delivery_last_name,
+                                delivery_street_aadress: delivery_street_aadress,
+                                delivery_country: delivery_country,
+                                delivery_state: delivery_state,
+                                delivery_city: delivery_city,
+                                delivery_postcode: delivery_postcode,
+                                delivery_phone: delivery_phone,
+                                order_notes: order_notes,
+                                coupon_code: coupon_code,
+                            //    latlong: locations,
+                                currency_id: localStorage.getItem("currency"),
+                                payment_method: payment_method,
+                                customer_id: customer_id,
+
+
+                            }),
+                        })
+
+                        .then(
+                            function(response) {
+                                if (response.status !== 200) {
+                                    console.log('Looks like there was a problem. Status Code: ' +
+                                    response.status);
+                                    return;
+                                }
+
+                                // Examine the text in the response
+                                response.json().then(function(data) {
+
+                                    console.log(data);
+
+                                    if (data.status == "error") {
+                                        document.getElementById("fail-response").style.display = "block";
+                                        document.getElementById("fail-response").innerHTML = '<h3>'+data.message+'</h3><br/><p>'+data.data+'</p>';
+                                        console.log(data.message);
+                                        console.log('error');
+
+                                    }else{
+
+                                        document.getElementById("fail-response").style.display = "none";
+                                        document.getElementById("fail-response").innerHTML = '';
+                                        console.log('ok');
+
+                                        // redirect to success page
+                                        window.location.href = '{{ route('thankyou', '') }}'+'/'+data.data;
+                                    }
+
+                                    document.getElementById("form-checkout__submit").disabled = false;
+                                    document.getElementById("form-checkout__submit").value = "Finalizar Compra";
+
+                                });
+                            }
+                        )
+                        .catch(function(err) {
+                            console.log('Fetch Error :-S', err);
+                        })
+                        .finaly(function() {
+                            document.getElementById("form-checkout__submit").disabled = false;
+                            document.getElementById("form-checkout__submit").value = "Finalizar Compra";
+                        });
+
+                    },
+
+                    onFetching: (resource) => {
+                        console.log("Fetching resource: ", resource);
+                        const payButton = document.getElementById("form-checkout__submit");
+                        payButton.setAttribute('disabled', true);
+                        return () => {
+                            payButton.removeAttribute("disabled");
+                        };
+                    },
+                },
+            });
+        };
+
+
+
+</script>
 @endsection

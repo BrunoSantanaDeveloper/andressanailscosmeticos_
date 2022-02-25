@@ -1033,6 +1033,7 @@ class ComposerStaticInit5bebe6113d39a100f5c1628706223d3b
         'App\\Http\\Controllers\\API\\Web\\CustomerController' => __DIR__ . '/../..' . '/kundol/Http/Controllers/API/Web/CustomerController.php',
         'App\\Http\\Controllers\\API\\Web\\MailController' => __DIR__ . '/../..' . '/kundol/Http/Controllers/API/Web/MailController.php',
         'App\\Http\\Controllers\\API\\Web\\MembershipLevelController' => __DIR__ . '/../..' . '/kundol/Http/Controllers/API/Web/MembershipLevelController.php',
+        'App\\Http\\Controllers\\API\\Web\\MercadopagoController' => __DIR__ . '/../..' . '/kundol/Http/Controllers/API/Web/MercadopagoController.php',
         'App\\Http\\Controllers\\API\\Web\\OrderController' => __DIR__ . '/../..' . '/kundol/Http/Controllers/API/Web/OrderController.php',
         'App\\Http\\Controllers\\API\\Web\\PaypalController' => __DIR__ . '/../..' . '/kundol/Http/Controllers/API/Web/PaypalController.php',
         'App\\Http\\Controllers\\API\\Web\\PointController' => __DIR__ . '/../..' . '/kundol/Http/Controllers/API/Web/PointController.php',
