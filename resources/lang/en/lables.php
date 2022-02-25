@@ -48,7 +48,7 @@ return [
     'header-call-us-now' => 'Call Us Now',
     'header-free-shipping' => 'Free Shipping',
     'header-over-order' => 'On order over $99',
-    'header-header2-phone' => 'Hotline',
+    'header-header2-phone' => 'Atendimento ao cliente',
 
     'home-slider-button-title'=>"Shop Now",
 
