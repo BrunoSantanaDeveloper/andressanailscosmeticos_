@@ -167,8 +167,8 @@ return [
     'checkout-order-detail'=>'Order Details',
 
 
-    'checkout-first-name'=>'First Name',
-    'checkout-last-name'=>'Last Name',
+    'checkout-first-name'=>'Nome',
+    'checkout-last-name'=>'Sobrenome',
     'checkout-address'=>'Address',
     'checkout-country-name'=>'Country Name',
     'checkout-state-name'=>'State Name',
