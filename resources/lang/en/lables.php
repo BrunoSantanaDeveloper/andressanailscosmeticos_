@@ -203,7 +203,7 @@ return [
     'checkout-shipping'=>'Shipping',
     'checkout-tax'=>"Tax",
     'checkout-same-ship-bill-address-text'=>'Same shipping and billing address.',
-    'checkout-location' => 'Location',
+    'checkout-location' => 'localização',
     'checkout-location-placeholder'=>'Please enter your location or click here to open map',
 
     'login-sign-up' => 'Sign Up',
