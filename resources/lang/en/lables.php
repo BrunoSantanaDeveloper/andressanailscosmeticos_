@@ -67,9 +67,9 @@ return [
 
     'home-tab-title'=>"PERFEITOS PARA PRESENTEAR",
     'home-tab-description'=>"Aproveite as promoções da Andressa Cosméticos. Presenteie quem você ama com os melhores produtos.",
-    'home-tab-topsales'=>"Top Sales",
-    'home-tab-special'=>"Special",
-    'home-tab-most-liked' => 'Most Liked',
+    'home-tab-topsales'=>"Top Vendas",
+    'home-tab-special'=>"Speciais",
+    'home-tab-most-liked' => 'Mais Vistos',
 
     'home-tab-top-title'=>"CATEGORIA DE PRODUTOS ",
     'home-tab-top-description'=>"A mais completa linha de produtos para você que é exigente.",
