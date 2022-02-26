@@ -85,7 +85,7 @@ class CartRepository implements CartInterface
                 else
                     $session_id = Hash::make(time());
             }
-
+/*
             if (!Gate::allows('isDigital')) {
                 if (!isset($parms['product_combination_id']))
                 $parms['product_combination_id'] = null;
@@ -99,6 +99,7 @@ class CartRepository implements CartInterface
                 $parms['qty'] = null;
                 $parms['product_combination_id'] = null;
             }
+            */
 
             if(isset($parms['customer_id'])){
                 $customer_id = $parms['customer_id'];
@@ -132,7 +133,7 @@ class CartRepository implements CartInterface
                 else
                     return $this->errorResponse('Session ID is Required');
             }
-            
+
             if (!isset($parms['product_combination_id']))
             $parms['product_combination_id'] = null;
             if(isset($parms['product_id'])){
