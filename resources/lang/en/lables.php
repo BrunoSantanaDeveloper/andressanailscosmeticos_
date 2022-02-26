@@ -50,7 +50,7 @@ return [
     'header-over-order' => 'On order over $99',
     'header-header2-phone' => 'Contato Direto',
 
-    'home-slider-button-title'=>"Shop Now",
+    'home-slider-button-title'=>"Botão de Comprar",
 
     'home-product-categories-title'=>"PRODUCT CATEGORIES",
     'home-product-categories-description'=>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi venenatis felis tempus feugiat maximus.",
@@ -65,25 +65,23 @@ return [
     'home-news-description'=>"Lorem ipsum dolor sit amet, consectetur adipiscing elit.
     Morbi venenatis felis tempus feugiat maximus.",
 
-    'home-tab-title'=>"WELCOME TO STORE",
-    'home-tab-description'=>"Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-    Morbi venenatis felis tempus feugiat maximus.",
+    'home-tab-title'=>"PERFEITOS PARA PRESENTEAR",
+    'home-tab-description'=>"Aproveite as promoções da Andressa Cosméticos. Presenteie quem você ama com os melhores produtos.",
     'home-tab-topsales'=>"Top Sales",
     'home-tab-special'=>"Special",
     'home-tab-most-liked' => 'Most Liked',
 
-    'home-tab-top-title'=>"TOP SELLING OF THE WEEK ",
-    'home-tab-top-description'=>"Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-    Morbi venenatis felis tempus feugiat maximus.",
+    'home-tab-top-title'=>"CATEGORIA DE PRODUTOS ",
+    'home-tab-top-description'=>"A mais completa linha de produtos para você que é exigente.",
 
-    'home-servics-free-shipping'=>"Free Shipping",
-    'home-servics-on-ordr'=>"On order over $99",
-    'home-servics-money-return'=>"Money Return",
-    'home-servics-return-days'=>"30 Days money return",
-    'home-servics-support'=>"Support 24/7",
-    'home-servics-hotline'=>"Hotline",
-    'home-servics-safe-payment'=>"Safe Payment",
-    'home-servics-protect-payment'=>"Protect online payment",
+    'home-servics-free-shipping'=>"Frete Grátis",
+    'home-servics-on-ordr'=>"Acima de R$100,00",
+    'home-servics-money-return'=>"Compra Garantida",
+    'home-servics-return-days'=>"Compre com segurança",
+    'home-servics-support'=>"Suporte Personalizado",
+    'home-servics-hotline'=>"Ligue : (62) 9 9932-3372",
+    'home-servics-safe-payment'=>"Pagamento Fácil",
+    'home-servics-protect-payment'=>"Cartão, Pix e outros",
 
 
 
