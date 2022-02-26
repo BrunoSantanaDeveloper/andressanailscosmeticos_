@@ -46,7 +46,9 @@ class MercadopagoController extends Controller
         $payment->transaction_amount = 40;
         $payment->token = $data['token'];
         $payment->description = "Ergonomic Silk Shirt";
-        $payment->installments = $data['installments'];
+        // TODO CORRIGIR O CAMPO online
+      //  $payment->installments = $data['installments'];
+        $payment->installments = 1;
         $payment->payment_method_id = $data['paymentMethodId'];
         $payment->payer = array(
           "email" =>  $data['payer']['email']
