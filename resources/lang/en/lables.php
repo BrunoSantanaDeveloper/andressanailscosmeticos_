@@ -52,8 +52,8 @@ return [
 
     'home-slider-button-title'=>"Botão de Comprar",
 
-    'home-product-categories-title'=>"PRODUCT CATEGORIES",
-    'home-product-categories-description'=>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi venenatis felis tempus feugiat maximus.",
+    'home-product-categories-title'=>"CATEGORIA DE PRODUTOS",
+    'home-product-categories-description'=>"A mais completa linha de produtos para você que é exigente.",
     'home-banner-title'=>"SNEAKER",
     'home-banner-sub-title'=>"Couples Footwear",
     'home-button-text'=>"View All Range",
