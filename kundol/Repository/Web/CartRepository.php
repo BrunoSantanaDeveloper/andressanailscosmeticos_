@@ -85,21 +85,22 @@ class CartRepository implements CartInterface
                 else
                     $session_id = Hash::make(time());
             }
-/*
+
             if (!Gate::allows('isDigital')) {
                 if (!isset($parms['product_combination_id']))
                 $parms['product_combination_id'] = null;
                 $parms['session_id'] = $session_id;
                 $qtyValidation = new AvailableQty;
                 $qtyValidation = $qtyValidation->availableQty($parms['product_id'], $parms['product_combination_id'], $parms['qty'],'cart');
+
                 if (!$qtyValidation) {
-                    return $this->errorResponse('Out of Stock!', 422);
+                   // return $this->errorResponse('Out of Stock!', 422);
                 }
             } else {
                 $parms['qty'] = null;
                 $parms['product_combination_id'] = null;
             }
-            */
+
 
             if(isset($parms['customer_id'])){
                 $customer_id = $parms['customer_id'];
