@@ -2675,11 +2675,11 @@
                         )
                         .catch(function(err) {
                             console.log('Fetch Error :-S', err);
-                        })
-                        .finaly(function() {
-                            document.getElementById("form-checkout__submit").disabled = false;
-                            document.getElementById("form-checkout__submit").value = "Finalizar Compra";
                         });
+                        // .finaly(function() {
+                        //     document.getElementById("form-checkout__submit").disabled = false;
+                        //     document.getElementById("form-checkout__submit").value = "Finalizar Compra";
+                        // });
 
                     },
 
