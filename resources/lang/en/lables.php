@@ -46,8 +46,8 @@ return [
     'header-view-cart' => 'View Cart',
     'header-search-products' => 'Buscar',
     'header-call-us-now' => 'Call Us Now',
-    'header-free-shipping' => 'Free Shipping',
-    'header-over-order' => 'On order over $99',
+    'header-free-shipping' => 'Frete Grátis',
+    'header-over-order' => 'Acima de R$100,00',
     'header-header2-phone' => 'Contato Direto',
 
     'home-slider-button-title'=>"Botão de Comprar",
