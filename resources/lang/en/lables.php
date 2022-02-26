@@ -189,10 +189,9 @@ return [
     'checkout-back'=>'Voltar',
 
 
-    'checkout-order-notes-title'=>'Order Notes & Summary',
-    'checkout-order-notes-description'=>'Please write notes of your
-    order',
-    'checkout-payment-method-title'=>'Payment Methods',
+    'checkout-order-notes-title'=>'Notas e resumo do pedido',
+    'checkout-order-notes-description'=>'Observação:',
+    'checkout-payment-method-title'=>'Método de Pagamento',
     'checkout-payment-method-description'=>'Shipping Methods',
 
 
@@ -202,7 +201,7 @@ return [
     'checkout-total'=>'Total',
     'checkout-shipping'=>'Shipping',
     'checkout-tax'=>"Tax",
-    'checkout-same-ship-bill-address-text'=>'Same shipping and billing address.',
+    'checkout-same-ship-bill-address-text'=>'Mesmo endereço de Entrega.',
     'checkout-location' => 'localização',
     'checkout-location-placeholder'=>'Please enter your location or click here to open map',
 
