@@ -160,33 +160,33 @@ return [
 
 
 
-    'checkout-checkout'=>'CHECKOUT',
-    'checkout-shipping-address'=>'Shipping Address',
-    'checkout-billing-address'=>'Billing Address',
-    'checkout-shipping-method'=>'Shipping Methods',
-    'checkout-order-detail'=>'Order Details',
+    'checkout-checkout'=>'FINALIZAR PEDIDO',
+    'checkout-shipping-address'=>'Endereço de Entrega',
+    'checkout-billing-address'=>'Endereço de Cobrança',
+    'checkout-shipping-method'=>'Frete',
+    'checkout-order-detail'=>'Detalhes do Pedido',
 
 
     'checkout-first-name'=>'Nome',
     'checkout-last-name'=>'Sobrenome',
-    'checkout-address'=>'Address',
-    'checkout-country-name'=>'Country Name',
-    'checkout-state-name'=>'State Name',
-    'checkout-city-name'=>'City Name',
-    'checkout-postal-code'=>'Postal Code',
-    'checkout-phone'=>'Phone',
+    'checkout-address'=>'Endereço',
+    'checkout-country-name'=>'País',
+    'checkout-state-name'=>'Estado',
+    'checkout-city-name'=>'Cidade',
+    'checkout-postal-code'=>'CEP',
+    'checkout-phone'=>'Telefone',
 
 
-    'checkout-billing-first-name'=>'First Name',
-    'checkout-billing-last-name'=>'Last Name',
-    'checkout-billing-country-name'=>'Country Name',
+    'checkout-billing-first-name'=>'Nome',
+    'checkout-billing-last-name'=>'Sobrenome',
+    'checkout-billing-country-name'=>'País',
     'checkout-billing-state-name'=>'State Name',
-    'checkout-billing-city-name'=>'City Name',
-    'checkout-billing-postal-code'=>'Postal Code',
-    'checkout-billing-phone'=>'Phone',
+    'checkout-billing-city-name'=>'Cidade',
+    'checkout-billing-postal-code'=>'CEP',
+    'checkout-billing-phone'=>'Telefone',
     'shipping-address-latlong'=>'Lat/Lng',
-    'checkout-continue'=>'Continue',
-    'checkout-back'=>'Back',
+    'checkout-continue'=>'Continuar',
+    'checkout-back'=>'Voltar',
 
 
     'checkout-order-notes-title'=>'Order Notes & Summary',
